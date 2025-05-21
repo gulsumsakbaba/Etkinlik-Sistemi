@@ -1,0 +1,83 @@
+[
+  {
+    "id": 1,
+    "email": "superadmin@admin.com",
+    "password": "admin123",
+    "role": "admin",
+    "isApproved": true,
+    "interest": null,
+    "isFirstLogin": false
+  },
+  {
+    "id": 2,
+    "email": "ser45@gmail.com",
+    "password": "ser466",
+    "role": "user",
+    "isApproved": true,
+    "interest": "Müzik",
+    "isFirstLogin": false
+  },
+  {
+    "id": 3,
+    "email": "kaan99@gmail.com",
+    "password": "kaan99",
+    "role": "user",
+    "isApproved": true,
+    "interest": "Müzik",
+    "isFirstLogin": true
+  },
+  {
+    "id": 4,
+    "email": "mehmet23@gmail.com",
+    "password": "mehmet24",
+    "role": "user",
+    "isApproved": true,
+    "interest": "Konferans",
+    "isFirstLogin": false
+  },
+  {
+    "id": 5,
+    "email": "jacob79@gmail.com",
+    "password": "jacob80",
+    "role": "user",
+    "isApproved": true,
+    "interest": "Konferans",
+    "isFirstLogin": false
+  },
+  {
+    "id": 6,
+    "email": "serra45@gmail.com",
+    "password": "serra46",
+    "role": "user",
+    "isApproved": true,
+    "interest": "Müzik",
+    "isFirstLogin": false
+  },
+  {
+    "id": 7,
+    "email": "emime5328@gmail.com",
+    "password": "emine5329",
+    "role": "user",
+    "isApproved": true,
+    "interest": "Müzik",
+    "isFirstLogin": true
+  },
+  {
+    "id": 8,
+    "email": "mustafa46@gmail.com",
+    "password": "mustafa46",
+    "role": "user",
+    "isApproved": true,
+    "interest": "Outdoor",
+    "isFirstLogin": false
+  },
+  {
+    "id": 9,
+    "email": "emime5329@gmail.com",
+    "password": "emime5330",
+    "role": "user",
+    "isApproved": true,
+    "interest": "Müzik",
+    "isFirstLogin": false
+  }
+]

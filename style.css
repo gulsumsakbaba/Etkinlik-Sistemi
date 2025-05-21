@@ -1,0 +1,374 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+header {
+    background: #333;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+}
+
+nav {
+    background: linear-gradient(135deg, #1a237e, #0d47a1);
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+nav strong {
+    font-size: 1.5rem;
+    color: white;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+nav a:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+main {
+    padding: 2rem;
+}
+
+.event-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin: 1rem 0;
+    transition: transform 0.3s;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+}
+
+.event-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-body h3 {
+    color: #1a237e;
+    margin-bottom: 1rem;
+}
+
+.event-card p {
+    margin: 0.5rem 0;
+}
+
+.ticket-options {
+    margin-top: 1rem;
+}
+
+.ticket-options select {
+    padding: 0.5rem;
+    margin-right: 1rem;
+}
+
+.ticket-options button {
+    padding: 0.5rem 1rem;
+    background: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.ticket-options button:hover {
+    background: #444;
+}
+
+#cartItems {
+    background: #fff;
+    padding: 1rem;
+    margin-top: 2rem;
+    border-radius: 5px;
+}
+
+#cartItems p {
+    margin: 0.5rem 0;
+}
+
+#announcementsList {
+    margin-top: 2rem;
+}
+
+.announcement-card {
+    background: #fff3cd;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+    border-left: 4px solid #ffc107;
+}
+
+.announcement-card h5 {
+    margin-bottom: 0.5rem;
+}
+
+.announcement-card small {
+    color: #666;
+}
+
+.pending-user {
+    background: #fff;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pending-user button {
+    padding: 0.5rem 1rem;
+    background: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.pending-user button:hover {
+    background: #444;
+}
+
+.weather-info {
+    background: #e8f5e9;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 4px;
+    border-left: 4px solid #4caf50;
+}
+
+.weather-info h4 {
+    margin-bottom: 0.5rem;
+}
+
+.weather-info p {
+    margin: 0.25rem 0;
+}
+
+#loginSection, #registerSection {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+#loginSection h2, #registerSection h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.form-group button {
+    width: 100%;
+    padding: 0.75rem;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.form-group button:hover {
+    background: #444;
+}
+
+.form-group p {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.form-group a {
+    color: #333;
+    text-decoration: none;
+}
+
+.form-group a:hover {
+    text-decoration: underline;
+}
+
+#mainContent {
+    display: none;
+}
+
+#adminPanel {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: #fff;
+    border-radius: 5px;
+}
+
+#adminPanel h2 {
+    margin-bottom: 1rem;
+}
+
+#passwordChangeSection {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    display: none;
+}
+
+#passwordChangeSection h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+#contentAfterPasswordChange {
+    display: none;
+}
+
+.auth-form {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.auth-form h2 {
+    text-align: center;
+    color: #1a237e;
+    margin-bottom: 1.5rem;
+}
+
+.auth-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.auth-form input, .auth-form textarea, .auth-form select {
+    width: 100%;
+    padding: 0.8rem;
+    margin: 0.5rem 0 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.auth-form button {
+    width: 100%;
+    padding: 0.8rem;
+    background: #1a237e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.auth-form button:hover {
+    background: #0d47a1;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    nav ul li {
+        margin: 0.5rem 0;
+    }
+    
+    .event-card {
+        margin: 1rem 0;
+    }
+    
+    .ticket-options {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .ticket-options select {
+        margin: 0.5rem 0;
+    }
+    
+    .ticket-options button {
+        margin-top: 0.5rem;
+    }
+    
+    .admin-panel {
+        padding: 1rem;
+    }
+    
+    .event-card img {
+        height: 150px;
+    }
+    
+    nav {
+        padding: 1rem;
+    }
+    
+    nav strong {
+        font-size: 1.2rem;}
+}

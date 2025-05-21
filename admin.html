@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel - Etkinlik Yönetim Sistemi</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+        font-family: sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+    }
+
+    .admin-panel {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 2rem;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    .admin-section {
+      background: #fff;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .admin-section h3 {
+      margin-top: 0;
+      color: #333;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 0.5rem;
+    }
+    .event-card, .announcement-card, .pending-user {
+      background: #f9f9f9;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+    }
+    .event-card button, .announcement-card button, .pending-user button {
+      margin: 0.5rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      color: white;
+    }
+    .event-card button:first-of-type {
+      background: #4CAF50;
+    }
+    .event-card button:last-of-type, .announcement-card button, .pending-user button {
+      background: #f44336;
+    }
+    form input, form textarea {
+      width: calc(100% - 22px);
+      padding: 10px;
+      margin: 0.5rem 0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      display: block;
+    }
+    form button {
+      background: #2196F3;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    form button:hover {
+        opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <nav style="padding: 1rem; background-color: #222; color: white;">
+    <strong>Admin Panel - Etkinlik Yönetim Sistemi</strong>
+    <span style="float:right;">
+      <a href="index.html" style="color:white;">Ana Sayfaya Dön</a>
+      <a href="#" style="color:white; margin-left:1rem;" onclick="logout()">Çıkış Yap</a>
+    </span>
+  </nav>
+
+  <div id="adminPanel" class="admin-panel">
+    <h2>Yönetici Paneli</h2>
+
+    <!-- Onay Bekleyenler -->
+    <div class="admin-section">
+      <h3>Onay Bekleyen Kullanıcılar</h3>
+      <div id="pendingUsers"></div>
+    </div>
+
+    <!-- Etkinlik Yönetimi -->
+    <div class="admin-section">
+      <h3>Etkinlik Yönetimi</h3>
+      <form id="eventForm">
+        <input id="eventName" placeholder="Etkinlik Adı" required /><br />
+        <textarea id="eventDesc" placeholder="Etkinlik Açıklaması" required></textarea><br />
+        <input type="date" id="eventDate" required /><br />
+        <input id="eventType" placeholder="Etkinlik Türü" required /><br />
+        <input id="eventCity" placeholder="Şehir" required /><br />
+        <input id="eventPrice" placeholder="Fiyat" type="number" required /><br />
+        <input id="eventSeats" placeholder="Kontenjan" type="number" required /><br />
+        <input id="eventImage" placeholder="Görsel URL" /><br />
+        <button type="submit">Etkinlik Ekle</button>
+      </form>
+      <div id="eventList"></div>
+    </div>
+
+    <!-- Duyuru Yönetimi -->
+    <div class="admin-section">
+      <h3>Duyuru Yönetimi</h3>
+      <form id="announcementForm">
+        <input id="announcementTitle" placeholder="Duyuru Başlığı" required /><br />
+        <textarea id="announcementContent" placeholder="Duyuru İçeriği" required></textarea><br />
+        <button type="submit">Duyuru Ekle</button>
+      </form>
+      <div id="announcementList"></div>
+    </div>
+  </div>
+
+  <script>
+    function logout() {
+      localStorage.removeItem('token');
+      window.location.href = 'index.html';
+    }
+  </script>
+  <script src="admin.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel - Etkinlik Yönetim Sistemi</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+        font-family: sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+    }
+
+    .admin-panel {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 2rem;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    .admin-section {
+      background: #fff;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .admin-section h3 {
+      margin-top: 0;
+      color: #333;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 0.5rem;
+    }
+    .event-card, .announcement-card, .pending-user {
+      background: #f9f9f9;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+    }
+    .event-card button, .announcement-card button, .pending-user button {
+      margin: 0.5rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      color: white;
+    }
+    .event-card button:first-of-type {
+      background: #4CAF50;
+    }
+    .event-card button:last-of-type, .announcement-card button, .pending-user button {
+      background: #f44336;
+    }
+    form input, form textarea {
+      width: calc(100% - 22px);
+      padding: 10px;
+      margin: 0.5rem 0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      display: block;
+    }
+    form button {
+      background: #2196F3;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    form button:hover {
+        opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <nav style="padding: 1rem; background-color: #222; color: white;">
+    <strong>Admin Panel - Etkinlik Yönetim Sistemi</strong>
+    <span style="float:right;">
+      <a href="index.html" style="color:white;">Ana Sayfaya Dön</a>
+      <a href="#" style="color:white; margin-left:1rem;" onclick="logout()">Çıkış Yap</a>
+    </span>
+  </nav>
+
+  <div id="adminPanel" class="admin-panel">
+    <h2>Yönetici Paneli</h2>
+
+    <!-- Onay Bekleyenler -->
+    <div class="admin-section">
+      <h3>Onay Bekleyen Kullanıcılar</h3>
+      <div id="pendingUsers"></div>
+    </div>
+
+    <!-- Etkinlik Yönetimi -->
+    <div class="admin-section">
+      <h3>Etkinlik Yönetimi</h3>
+      <form id="eventForm">
+        <input id="eventName" placeholder="Etkinlik Adı" required /><br />
+        <textarea id="eventDesc" placeholder="Etkinlik Açıklaması" required></textarea><br />
+        <input type="date" id="eventDate" required /><br />
+        <input id="eventType" placeholder="Etkinlik Türü" required /><br />
+        <input id="eventCity" placeholder="Şehir" required /><br />
+        <input id="eventPrice" placeholder="Fiyat" type="number" required /><br />
+        <input id="eventSeats" placeholder="Kontenjan" type="number" required /><br />
+        <input id="eventImage" placeholder="Görsel URL" /><br />
+        <button type="submit">Etkinlik Ekle</button>
+      </form>
+      <div id="eventList"></div>
+    </div>
+
+    <!-- Duyuru Yönetimi -->
+    <div class="admin-section">
+      <h3>Duyuru Yönetimi</h3>
+      <form id="announcementForm">
+        <input id="announcementTitle" placeholder="Duyuru Başlığı" required /><br />
+        <textarea id="announcementContent" placeholder="Duyuru İçeriği" required></textarea><br />
+        <button type="submit">Duyuru Ekle</button>
+      </form>
+      <div id="announcementList"></div>
+    </div>
+  </div>
+
+  <script>
+    function logout() {
+      localStorage.removeItem('token');
+      window.location.href = 'index.html';
+    }
+  </script>
+  <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Etkinlik Yönetim Sistemi</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .event-card {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .event-card img {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    .card-body {
+      padding: 10px 0;
+    }
+    .weather-info {
+      background: #f8f9fa;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 4px;
+    }
+    .ticket-options {
+      margin: 10px 0;
+    }
+    .announcement-card {
+      background: #fff3cd;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
+    .cart-section {
+      background: #f8f9fa;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+    }
+    .suggested-events {
+      background: #e9ecef;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <nav style="padding: 1rem; background-color: #222; color: white;">
+    <strong>Etkinlik Yönetim Sistemi</strong>
+    <span style="float:right;">
+      <a href="#" style="color:white; margin-right:1rem;" onclick="showLogin()">Giriş Yap</a>
+      <a href="#" style="color:white;" onclick="showRegister()">Kayıt Ol</a>
+    </span>
+  </nav>
+
+  <!-- Giriş -->
+  <div id="loginSection" class="auth-form">
+    <h2>Giriş Yap</h2>
+    <form id="loginForm">
+      <label for="loginEmail">E-posta</label>
+      <input type="email" id="loginEmail" required />
+      <label for="loginPassword">Şifre</label>
+      <input type="password" id="loginPassword" required />
+      <button type="submit">Giriş Yap</button>
+    </form>
+  </div>
+
+  <!-- Kayıt -->
+  <div id="registerSection" class="auth-form" style="display:none;">
+    <h2>Kayıt Ol</h2>
+    <form id="registerForm">
+      <label for="registerEmail">E-posta</label>
+      <input type="email" id="registerEmail" required />
+      <label for="registerPassword">Şifre</label>
+      <input type="password" id="registerPassword" required />
+      <label for="registerInterest">İlgi Alanınız</label>
+      <select id="registerInterest" required>
+        <option value="Müzik">Müzik</option>
+        <option value="Outdoor">Outdoor</option>
+        <option value="Konferans">Konferans</option>
+        <option value="Tiyatro">Tiyatro</option>
+      </select>
+      <button type="submit">Kayıt Ol</button>
+    </form>
+  </div>
+
+  <!-- Ana Sayfa -->
+  <div id="mainContent" style="display: none; padding: 2rem;">
+    <!-- Duyurular -->
+    <h2>Duyurular</h2>
+    <div id="announcementsList"></div>
+
+    <!-- Etkinlikler -->
+    <h2>Etkinlikler</h2>
+    <div id="eventsList"></div>
+
+    <!-- İlginizi Çekebilecek Etkinlikler -->
+    <div id="suggestedEvents" class="suggested-events">
+      <h2>İlginizi Çekebilecek Etkinlikler</h2>
+      <div id="suggestedEventsList"></div>
+    </div>
+
+    <!-- Sepet -->
+    <div class="cart-section">
+      <h2>Sepetim</h2>
+      <div id="cartItems"></div>
+      <div class="payment-options">
+        <h3>Ödeme Yöntemi</h3>
+        <select id="paymentMethod">
+          <option value="credit">Kredi Kartı</option>
+          <option value="bank">Banka Havalesi</option>
+        </select>
+      </div>
+      <button class="btn btn-success" onclick="checkout()">Ödeme Yap</button>
+    </div>
+
+    <!-- Admin Panel (gizli, sadece admin için açılır) -->
+    <div id="adminPanel" class="admin-panel" style="display: none;">
+      <h2>Yönetici Paneli</h2>
+
+      <!-- Onay Bekleyenler -->
+      <div class="admin-section">
+        <h3>Onay Bekleyen Kullanıcılar</h3>
+        <div id="pendingUsers"></div>
+      </div>
+
+      <!-- Etkinlik Yönetimi -->
+      <div class="admin-section">
+        <h3>Etkinlik Yönetimi</h3>
+        <form id="eventForm">
+          <input id="eventName" placeholder="Adı" required /><br />
+          <textarea id="eventDesc" placeholder="Açıklama"></textarea><br />
+          <input type="date" id="eventDate" required /><br />
+          <input id="eventType" placeholder="Tür" required /><br />
+          <input id="eventCity" placeholder="Şehir" required /><br />
+          <input id="eventPrice" placeholder="Fiyat" type="number" required /><br />
+          <input id="eventSeats" placeholder="Kontenjan" type="number" required /><br />
+          <input id="eventImage" placeholder="Görsel URL" /><br />
+          <button type="submit">Ekle</button>
+        </form>
+        <div id="eventList"></div>
+      </div>
+
+      <!-- Duyuru Yönetimi -->
+      <div class="admin-section">
+        <h3>Duyuru Yönetimi</h3>
+        <form id="announcementForm">
+          <input id="announcementTitle" placeholder="Başlık" required /><br />
+          <textarea id="announcementContent" placeholder="İçerik" required></textarea><br />
+          <button type="submit">Ekle</button>
+        </form>
+        <div id="announcementList"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showLogin() {
+      document.getElementById('loginSection').style.display = 'block';
+      document.getElementById('registerSection').style.display = 'none';
+    }
+
+    function showRegister() {
+      document.getElementById('loginSection').style.display = 'none';
+      document.getElementById('registerSection').style.display = 'block';
+    }
+  </script>
+  <script src="main.js"></script>
+</body>
+</html>
